@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--1.模板的理解：
+        动态的html页面，包含了一些JS语法代码。
+        指令（以v-开头的自定义标签属性）
+        2.双大括号表达式：
+            功能：向页面输出数据，可以调用对象的方法。     
+                  读取data中数据显示。
+        3.指令一：强制数据绑定：
+            功能：指定变化的属性值。
+            完整写法：
+                v-bind：xxx='yyy'  (yyy会作为表达式解析执行)
+            简洁写法：
+                :xxx='yyy'
+        4.指令二：绑定事件监听
+            功能：绑定指定事件名的回调函数。
+            完整写法：
+            v-on:click='xxx'
+        数据绑定与双向数据绑定
+           数据绑定：数据在页面与内存中的变量自动转移
+           双向数据绑定：如果2个方向数据都可以自动转移
+    -->
+    <div id="app">
+        <h2>1.双大括号表达式</h2>
+        <p>{{msg}}</p>
+        <p>{{msg.toUpperCase()}}</p>
+        <p v-text="msg1"></p>  <!--textContent-->
+        <p v-html="msg1"></p>  <!--innerHTML-->
+
+        <h2>2.指令一：强制数据绑定</h2>
+        <img :src="imgUrl">
+        <img v-bind:src="imgUrl">
+
+        <h2>3.指令二：绑定事件监听</h2>
+        <button v-on:click="test">test1</button>
+        <button @click=test2(msg1)>test2</button>
+    </div>
+</body>
+<script type="text/javascript" src="../../src/js/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: 'I will Back!',
+            msg1: '<a href="http://www.baidu.com">I will back</a>',
+            imgUrl: 'https://cn.vuejs.org/images/logo.png'
+        },
+        methods: {
+            test(){
+                alert("hehehe!")
+            },
+            test2(content){
+                alert(content)
+            }
+        }
+    })
+</script>
+</html>
